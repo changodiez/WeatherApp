@@ -1,48 +1,121 @@
-const apiKey = '416e0f0dd8c8e9042517b54f30bf565c';
-let latitude;
+const apiKey = "4bb624c197edaba6e3c1acc72fdd653b";
+const apiKeyGeo = "AIzaSyDwPw2KvYD0LlKjhqBwzEzNECIbR7z2-Xk"
+
+let latitud;
 let longitude;
-const notification = document.getElementsByClassName('notification')[0];
 let weather;
 
-getLocation();
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    }
-}
+//Get elements from HTML
+const notification = document.getElementsByClassName('notification')[0];
+const weatherIcon = document.getElementById("weatherIcon");
+const temperatureValue = document.querySelector(".temperature-value");
+const weatherLocation = document.getElementById("timeZone");
+const temperatureDescription = document.getElementById("temperatureDescription");
 
-function kelvinToCelsius(temp) {
-    return temp - 273.15;
+
+// Call my function Geolocation
+getLocation();
+
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
 function onSuccess(position) {
-    console.log(position);
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
+    console.log("onSucess function", position);
+    const {
+        coords: {
+            latitude,
+            longitude
+        }
+    } = position;
 
-    const weatherCall = fetch('https://api.openweathermap.org/data/2.5/weather?'
-                            + 'lat=' + latitude
-                            + '&lon=' + longitude
-                            + '&appid=' + apiKey);
+    // geting info from api:
+    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&
+    exclude=hourly,daily&appid=${apiKey}`;
 
-    weatherCall.then(response => response.json())
-            .then(weatherInfo => {
-                console.log(weatherInfo)
-                console.log(weatherInfo.weather[0].icon);
-                console.log(kelvinToCelsius(weatherInfo.main.temp).toFixed(1));
-                console.log(weatherInfo.weather[0].main);
-                console.log(weatherInfo.name);
-            });
+    fetch(url)
+        .then((resolve) => resolve.json())
+        .then((weatherInfo) => {
+            weather = weatherInfo;
+            weatherConsole();
+        })
+
 }
 
 function onError(error) {
-    console.error('No no no ', error);
-    // 1. take message and put it in a p
+    console.log("onError", error);
     const p = document.createElement('p');
     p.innerHTML = error.message;
-    // 2. display: block (notification div)
     notification.style.display = 'block';
-    // 3. append p inside notification
     notification.appendChild(p);
 }
 
+
+function weatherConsole() {
+    console.log(weather)
+    const description = weather.current.weather[0].description;
+    console.log(description);
+    const icon = weather.current.weather[0].icon;
+    console.log(icon);
+    const timeZone = weather.timezone;
+    console.log(timeZone);
+    const temp = weather.current.temp;
+    console.log(temp);
+    const tempInCelcius = kelvinToCelsius(temp);
+    console.log(tempInCelcius);
+
+    //print in html 
+    weatherIcon.src = `icons/${icon}.png`;
+    temperatureValue.innerHTML = `<p>${tempInCelcius} °<span>C</span></p>`;
+    weatherLocation.innerHTML = timeZone;
+    temperatureDescription.innerHTML = description.toUpperCase() ;
+    document.body.style.backgroundImage = `url(/img/${icon}.jpeg)`;
+    console.log(document.body.style.backgroundImage.url)
+}
+
+
+function kelvinToCelsius(temp) {
+    const tempInCelcius = temp - 273.15;
+    return tempInCelcius.toFixed(2);
+}
+
+
+// Check new location 
+
+
+function getFromApi (){
+    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&
+    exclude=hourly,daily&appid=${apiKey}`;
+
+    fetch(url)
+        .then((resolve) => resolve.json())
+        .then((weatherInfo) => {
+            weather = weatherInfo;
+            weatherConsole();
+        })
+}
+
+
+function getGeoLocation () {
+    inputLocation = document.getElementById("inputLocation");
+
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?&address=${inputLocation.value}&key=${apiKeyGeo}`;
+
+    fetch(url)
+        .then((resolve) => resolve.json())
+        .then((GoogleGeoLocation) => {
+            GoogleGeo = GoogleGeoLocation;
+            googleGeoLocation ();
+        })
+
+}
+
+function googleGeoLocation () {
+    console.log(GoogleGeo)
+    latitude = GoogleGeo.results[0].geometry.location.lat;
+    longitude = GoogleGeo.results[0].geometry.location.lng;
+    console.log (latitude);
+    console.log (longitude)
+    getFromApi ();
+    
+}

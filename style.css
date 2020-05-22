@@ -1,33 +1,37 @@
 *{
-    font-family: "Rimouski";
+    font-family: 'Dosis', sans-serif;
 }
 
 body{
-    background-color: #293251;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/img/unknown.jpeg);
+    background-position: center;
+    background-size: cover;    
+    background-repeat: no-repeat;
+    background-color: #29325177;
 }
 
 .container{
-    width: 300px;    
-    background-color: #FFF;
-    
+    width: 50%;
+    max-height: 70vh;
+    background-color: rgba(252, 252, 252, 0.452);
     display: block;
-    margin: 0 auto;
-    
+    margin:50px auto;
     border-radius: 10px;
     padding-bottom : 50px;
 }
 
 .app-title{
-    width: 300px;
-    height: 50px;
+    height: 5%;
     border-radius: 10px 10px 0 0;
 }
 
 .app-title p{
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     margin: 0 auto;
-    font-size: 1.2em;
+    font-size: 1.6em;
     color: #293251;
 }
 
@@ -45,58 +49,47 @@ body{
 }
 
 .weather-container{
-    width: 300px;
-    height: 260px;
-    background-color: #F4F9FF;
+    height: 50%;
+    background-color: #878ca05b;
+    border-radius: 10px;
 }
 
 .weather-icon{
-    width: 300px;
-    height: 128px;
+    height: 20vh ;
 }
 
 .weather-icon img{
+    height: 20vh ;
     display: block;
     margin: 0 auto;
 }
 
 .temperature-value{
-    width: 300px;
-    height:60px;
+    height:90px;
 }
 
 .temperature-value p{
     padding: 0;
     margin: 0;
     color: #293251;
-    font-size: 4em;
+    font-size: 3.5em;
     text-align: center;
     cursor: pointer;
 }
 
-.temperature-value p:hover{
-    
-}
 
 .temperature-value span{
     color: #293251;
     font-size: 0.5em;
 }
 
-.temperature-description{
-    
-}
 
 .temperature-description p{
     padding: 8px;
     margin: 0;
     color: #293251;
     text-align: center;
-    font-size: 1.2em;
-}
-
-.location{
-    
+    font-size: 1.9em;
 }
 
 .location p{
@@ -104,8 +97,39 @@ body{
     padding: 0;
     color: #293251;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 1.6em;
 }
 
+#checkButton {
+    width: 100%;
+    background-color: #878ca031;
+    border:none;    
+    padding-top: 0px;
+    color: #293251;
+    text-align: center;
+    align-items: center;
+    font-size: 1em;
+ 
+}
+.containerCheck{
+      
+   
+    display: flexbox;
+    margin:auto;
+    border-radius: 10px;
+    
+}
 
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    background-color: none;
+
+}
+
+.btn {
+    width: 50%;
+ }
 
