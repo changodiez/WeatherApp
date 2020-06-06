@@ -43,7 +43,6 @@ function onSuccess(position) {
 }
 
 function onError(error) {
-    console.log("onError", error);
     const p = document.createElement('p');
     p.innerHTML = error.message;
     notification.style.display = 'block';
