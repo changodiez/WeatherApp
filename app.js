@@ -10,6 +10,7 @@ const notification = document.getElementsByClassName('notification')[0];
 const weatherIcon = document.getElementById("weatherIcon");
 const temperatureValue = document.querySelector(".temperature-value");
 const weatherLocation = document.getElementById("timeZone");
+const weatherLocation2 = document.getElementById("timeZone2");
 const temperatureDescription = document.getElementById("temperatureDescription");
 
 
@@ -51,24 +52,19 @@ function onError(error) {
 
 
 function weatherConsole() {
-    console.log(weather)
     const description = weather.current.weather[0].description;
-    console.log(description);
     const icon = weather.current.weather[0].icon;
-    console.log(icon);
     const timeZone = weather.timezone;
-    console.log(timeZone);
     const temp = weather.current.temp;
-    console.log(temp);
     const tempInCelcius = kelvinToCelsius(temp);
-    console.log(tempInCelcius);
 
     //print in html 
     weatherIcon.src = `icons/${icon}.png`;
     temperatureValue.innerHTML = `<p>${tempInCelcius} °<span>C</span></p>`;
     weatherLocation.innerHTML = timeZone;
-    temperatureDescription.innerHTML = description.toUpperCase() ;
-    document.body.style.backgroundImage = `url(/img/${icon}.jpeg)`;
+    weatherLocation2.innerHTML = timeZone;
+    temperatureDescription.innerHTML = description.toUpperCase();
+    document.body.style.backgroundImage = `url(img/${icon}.jpeg)`;
     console.log(document.body.style.backgroundImage.url)
 }
 
@@ -82,7 +78,7 @@ function kelvinToCelsius(temp) {
 // Check new location 
 
 
-function getFromApi (){
+function getFromApi() {
     const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&
     exclude=hourly,daily&appid=${apiKey}`;
 
@@ -95,7 +91,7 @@ function getFromApi (){
 }
 
 
-function getGeoLocation () {
+function getGeoLocation() {
     inputLocation = document.getElementById("inputLocation");
 
     const url = `https://maps.googleapis.com/maps/api/geocode/json?&address=${inputLocation.value}&key=${apiKeyGeo}`;
@@ -104,17 +100,16 @@ function getGeoLocation () {
         .then((resolve) => resolve.json())
         .then((GoogleGeoLocation) => {
             GoogleGeo = GoogleGeoLocation;
-            googleGeoLocation ();
+            googleGeoLocation();
         })
 
 }
 
-function googleGeoLocation () {
-    console.log(GoogleGeo)
+function googleGeoLocation() {
     latitude = GoogleGeo.results[0].geometry.location.lat;
     longitude = GoogleGeo.results[0].geometry.location.lng;
-    console.log (latitude);
-    console.log (longitude)
-    getFromApi ();
-    
+    console.log(latitude);
+    console.log(longitude)
+    getFromApi();
+
 }
