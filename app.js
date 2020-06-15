@@ -59,10 +59,10 @@ function weatherConsole() {
     //print in html 
     weatherIcon.src = `icons/${icon}.png`;
     temperatureValue.innerHTML = `<p>${tempInCelcius} °<span>C</span></p>`;
-    weatherLocation.innerHTML = formatTimeZone (timeZone) ;
+    weatherLocation.innerHTML = printName ();
     temperatureDescription.innerHTML = description.toUpperCase();
     document.body.style.backgroundImage = `url(img/${icon}.jpeg)`;
-    console.log(document.body.style.backgroundImage.url)
+    
 }
 
 
@@ -110,8 +110,22 @@ function getGeoLocation() {
 function googleGeoLocation() {
     latitude = GoogleGeo.results[0].geometry.location.lat;
     longitude = GoogleGeo.results[0].geometry.location.lng;
-    console.log(latitude);
-    console.log(longitude)
+    name = GoogleGeo.results[0].formatted_address;
     getFromApi();
+    printName ();
+   
 
+}
+
+function printName () {
+let namePrint = "";
+
+    if (name === null |name === false |name === undefined | name < 0 ){
+        namePrint = timeZone ;
+    }
+    else {
+        namePrint = name ;
+    }
+    console.log(namePrint)
+return namePrint;
 }
