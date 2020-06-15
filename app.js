@@ -27,6 +27,7 @@ function onSuccess(position) {
             longitude
         }
     } = position;
+    googleGeoLocationName(latitude,longitude)
 
     // geting info from api:
     const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&
@@ -37,6 +38,7 @@ function onSuccess(position) {
         .then((weatherInfo) => {
             weather = weatherInfo;
             weatherConsole();
+            
         })
 
 }
@@ -107,10 +109,29 @@ function getGeoLocation() {
 
 }
 
+function googleGeoLocationName(latitude,longitude) {
+    pos = (latitude + "," +longitude);
+
+    console.log (pos)
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos}&key=${apiKeyGeo}`;
+    
+    fetch(url)
+        .then((resolve) => resolve.json())
+        .then((GoogleGeoLocationName) => {
+            GoogleGeoName = GoogleGeoLocationName;
+            console.log (GoogleGeoName)
+            console.log (GoogleGeoName.results[9].formatted_address);
+            name = GoogleGeoName.results[9].formatted_address;
+            printName (name);
+        })
+       
+}
+
 function googleGeoLocation() {
     latitude = GoogleGeo.results[0].geometry.location.lat;
     longitude = GoogleGeo.results[0].geometry.location.lng;
-    name = GoogleGeo.results[0].formatted_address;
+    console.log(GoogleGeo.results[0].address_components[0])
+    name = GoogleGeo.results[0].address_components[1].long_name + ", " + GoogleGeo.results[0].address_components[0].long_name;
     getFromApi();
     printName ();
    
@@ -118,14 +139,8 @@ function googleGeoLocation() {
 }
 
 function printName () {
-let namePrint = "";
-
-    if (name === null |name === false |name === undefined | name < 0 ){
-        namePrint = timeZone ;
-    }
-    else {
-        namePrint = name ;
-    }
-    console.log(namePrint)
+ 
+let namePrint = name;    
 return namePrint;
 }
+
