@@ -111,16 +111,12 @@ function getGeoLocation() {
 
 function googleGeoLocationName(latitude,longitude) {
     pos = (latitude + "," +longitude);
-
-    console.log (pos)
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos}&key=${apiKeyGeo}`;
     
     fetch(url)
         .then((resolve) => resolve.json())
         .then((GoogleGeoLocationName) => {
             GoogleGeoName = GoogleGeoLocationName;
-            console.log (GoogleGeoName)
-            console.log (GoogleGeoName.results[9].formatted_address);
             name = GoogleGeoName.results[9].formatted_address;
             printName (name);
         })
@@ -130,8 +126,7 @@ function googleGeoLocationName(latitude,longitude) {
 function googleGeoLocation() {
     latitude = GoogleGeo.results[0].geometry.location.lat;
     longitude = GoogleGeo.results[0].geometry.location.lng;
-    console.log(GoogleGeo.results[0].address_components[0])
-    name = GoogleGeo.results[0].address_components[1].long_name + ", " + GoogleGeo.results[0].address_components[0].long_name;
+    name = GoogleGeo.results[0].formatted_address;
     getFromApi();
     printName ();
    
