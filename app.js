@@ -10,7 +10,6 @@ const notification = document.getElementsByClassName('notification')[0];
 const weatherIcon = document.getElementById("weatherIcon");
 const temperatureValue = document.querySelector(".temperature-value");
 const weatherLocation = document.getElementById("timeZone");
-const weatherLocation2 = document.getElementById("timeZone2");
 const temperatureDescription = document.getElementById("temperatureDescription");
 
 
@@ -22,7 +21,6 @@ function getLocation() {
 }
 
 function onSuccess(position) {
-    console.log("onSucess function", position);
     const {
         coords: {
             latitude,
@@ -61,8 +59,7 @@ function weatherConsole() {
     //print in html 
     weatherIcon.src = `icons/${icon}.png`;
     temperatureValue.innerHTML = `<p>${tempInCelcius} °<span>C</span></p>`;
-    weatherLocation.innerHTML = timeZone;
-    weatherLocation2.innerHTML = timeZone;
+    weatherLocation.innerHTML = formatTimeZone (timeZone) ;
     temperatureDescription.innerHTML = description.toUpperCase();
     document.body.style.backgroundImage = `url(img/${icon}.jpeg)`;
     console.log(document.body.style.backgroundImage.url)
@@ -72,6 +69,11 @@ function weatherConsole() {
 function kelvinToCelsius(temp) {
     const tempInCelcius = temp - 273.15;
     return tempInCelcius.toFixed(2);
+}
+
+function formatTimeZone (text) {
+   let textRemoved = text.replace( "/", ", ");
+   return  textRemoved.replace( "_", " ");
 }
 
 

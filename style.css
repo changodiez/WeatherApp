@@ -1,37 +1,36 @@
-*{
+* {
     font-family: 'Dosis', sans-serif;
 }
 
-.header {
-
-    
-}
-
-body{
+body {
     width: 100vw;
     height: 100vh;
     background-image: url(img/unknown.jpeg);
     background-position: center;
-    background-size: cover;    
+    background-size: cover;
     background-repeat: no-repeat;
     background-color: #29325177;
 }
 
-.container{
+.container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-height: 70vh;
     background-color: rgba(252, 252, 252, 0.452);
     display: block;
-    margin:50px auto;
+    margin: 50px auto;
     border-radius: 10px;
-    padding-bottom : 50px;
+    padding-bottom: 50px;
 }
 
-.app-title{
+.app-title {
     height: 5%;
     border-radius: 10px 10px 0 0;
 }
 
-.app-title p{
+.app-title p {
     text-align: center;
     padding: 10px;
     margin: 0 auto;
@@ -39,12 +38,12 @@ body{
     color: #293251;
 }
 
-.notification{
+.notification {
     background-color: #f8d7da;
     display: none;
 }
 
-.notification p{
+.notification p {
     color: #721c24;
     font-size: 1.2em;
     margin: 0;
@@ -52,27 +51,28 @@ body{
     padding: 10px 0;
 }
 
-.weather-container{
+.weather-container {
     height: 50%;
     background-color: #878ca05b;
     border-radius: 10px;
+    padding-bottom: 2rem;
 }
 
-.weather-icon{
-    height: 20vh ;
+.weather-icon {
+    height: 20vh;
 }
 
-.weather-icon img{
-    height: 20vh ;
+.weather-icon img {
+    height: 20vh;
     display: block;
     margin: 0 auto;
 }
 
-.temperature-value{
-    height:90px;
+.temperature-value {
+    height: 90px;
 }
 
-.temperature-value p{
+.temperature-value p {
     padding: 0;
     margin: 0;
     color: #293251;
@@ -82,13 +82,13 @@ body{
 }
 
 
-.temperature-value span{
+.temperature-value span {
     color: #293251;
     font-size: 0.5em;
 }
 
 
-.temperature-description p{
+.temperature-description p {
     padding: 8px;
     margin: 0;
     color: #293251;
@@ -96,7 +96,7 @@ body{
     font-size: 1.9em;
 }
 
-.location p{
+.location p {
     margin: 0;
     padding: 0;
     color: #293251;
@@ -104,36 +104,32 @@ body{
     font-size: 1.6em;
 }
 
-#checkButton {
-    width: 100%;
-    background-color: #878ca031;
-    border:none;    
-    padding-top: 0px;
-    color: #293251;
+.title {
+    margin-top: 1rem;
+    padding: 0.5rem;
     text-align: center;
-    align-items: center;
-    font-size: 1em;
- 
-}
-.containerCheck{
-      
-   
-    display: flexbox;
-    margin:auto;
-    border-radius: 10px;
-    
 }
 
-.card {
+.other-locations {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
-    width: 100%;
-    background-color: none;
+    flex-wrap: wrap;
+    justify-items: center;
+    padding-bottom: 1rem;
+    max-width: 50%;
+    margin: auto;
+}
+
+#inputLocation {
+    padding: 0.5rem;
 
 }
 
-.btn {
-    width: 50%;
- }
+.button {
+    padding-left: 1rem;
+}
 
+#SearchButton {
+    justify-self: end;
+
+}
