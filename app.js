@@ -73,12 +73,6 @@ function kelvinToCelsius(temp) {
     return tempInCelcius.toFixed(2);
 }
 
-function formatTimeZone (text) {
-   let textRemoved = text.replace( "/", ", ");
-   return  textRemoved.replace( "_", " ");
-}
-
-
 // Check new location 
 
 

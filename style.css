@@ -10,6 +10,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #29325177;
+    overflow: hidden;
 }
 
 .container {
@@ -23,6 +24,7 @@ body {
     margin: 50px auto;
     border-radius: 10px;
     padding-bottom: 50px;
+    overflow: hidden;
 }
 
 .app-title {
@@ -116,12 +118,13 @@ body {
     flex-wrap: wrap;
     justify-items: center;
     padding-bottom: 1rem;
-    max-width: 50%;
+    max-width: 30%;
     margin: auto;
 }
 
 #inputLocation {
     padding: 0.5rem;
+    background-color: rgba(252, 252, 252, 0.452);
 
 }
 
